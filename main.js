@@ -13,8 +13,8 @@ var QuoteInput = function(quote, author, rating){
 
 }
 
-QuoteFeed.prototype.save = function(){
-	var quoteObjectStr = JSON.stringify(this.quoteFeed);
+QuoteFeed.prototype.save = function(quoteFeed){
+	var quoteObjectStr = JSON.stringify(quoteFeed);
 	localStorage.setItem('quoteFeed', quoteObjectStr);
 }
 
@@ -37,8 +37,8 @@ QuoteFeed.prototype.render = function(listToRender){
 
 }
 
-var clearForm = function($targetForm){
-  $('.clear').each(function(){
+var clearForm = function($target){
+  $($target).each(function(){
     $(this).val('');
     $('.raty').raty({ score: 0});
   })
@@ -46,29 +46,57 @@ var clearForm = function($targetForm){
 
 var feed = new QuoteFeed();
 
-$(document).on('ready', function() {
-  var test = feed.load();
-  feed.render(test);
+console.log(feed.quoteFeed);
 
+$(document).on('ready', function() {
   $('.raty').raty();
 
-  $('form').on('submit', function(e){
+  if(feed.load() != null){
 
-  	e.preventDefault();
+    var test = feed.load();
 
-  	var quote = $('[name="quote"]').val();
-  	var author = $('[name="author-name"]').val();
-  	var rating = $('[name="score"]').val();
-  	
-  	
-  	var quoteObject = new QuoteInput(quote, author, rating);
-  	feed.quoteFeed.push(quoteObject);
-    feed.save();
-  	feed.render(feed.quoteFeed);
-    clearForm();
+    for (var i = 0; i<test.length; i++){
+      feed.quoteFeed.push(test[i]);
+    }
+    feed.render(test);
 
-  });
+    $('form').on('submit', function(e){
 
+    e.preventDefault();
+
+    var quote = $('[name="quote"]').val();
+    var author = $('[name="author-name"]').val();
+    var rating = $('[name="score"]').val();
+    
+    
+    var quoteObject = new QuoteInput(quote, author, rating);
+    feed.quoteFeed.push(quoteObject);
+    feed.save(feed.quoteFeed);
+    feed.render(feed.quoteFeed);
+    clearForm('.clear');
+
+    });
+
+  }
+  else{
+
+    $('form').on('submit', function(e){
+
+    e.preventDefault();
+
+    var quote = $('[name="quote"]').val();
+    var author = $('[name="author-name"]').val();
+    var rating = $('[name="score"]').val();
+    
+    
+    var quoteObject = new QuoteInput(quote, author, rating);
+    feed.quoteFeed.push(quoteObject);
+    feed.save(feed.quoteFeed);
+    feed.render(feed.quoteFeed);
+    clearForm('.clear');
+    });
+
+  }
 
 });
 
