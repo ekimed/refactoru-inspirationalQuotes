@@ -1,3 +1,15 @@
 .quote-display-template {
   display: none;
 }
+.page-header {
+  font-size: 65px;
+  margin: 0 auto;
+  text-align: center;
+  color: #2980b9;
+}
+.form-container {
+  display: none;
+}
+.show-form {
+  text-align: center;
+}

@@ -9,7 +9,7 @@ var QuoteInput = function(quote, author, rating){
 	this.quote = quote;
 	this.author = author;
 	this.rating = rating;
-	this._idCount = null;
+	// this._idCount = null;
 
 }
 
@@ -38,9 +38,13 @@ QuoteFeed.prototype.render = function(listToRender){
 
 }
 
-QuoteFeed.prototype.remove = function(){
-
+function sortedByHighestRating (a,b){
+  return b.rating - a.rating;
 }
+
+// QuoteFeed.prototype.remove = function(){
+
+// }
 
 var clearForm = function($target){
   $($target).each(function(){
@@ -50,7 +54,7 @@ var clearForm = function($target){
 }
 
 var feed = new QuoteFeed();
-var idCount = 0;
+// var idCount = 0;
 
 
 
@@ -77,8 +81,9 @@ $(document).on('ready', function() {
     
     
     var quoteObject = new QuoteInput(quote, author, rating);
-    quoteObject._idCount = idCount;
+    // quoteObject._idCount = idCount;
     feed.quoteFeed.push(quoteObject);
+    feed.quoteFeed.sort(sortedByHighestRating);
     feed.save(feed.quoteFeed);
     feed.render(feed.quoteFeed);
     // idCount += 1;
@@ -91,6 +96,7 @@ $(document).on('ready', function() {
     for (var i=0; i<feed.quoteFeed.length; i++){
       if (feed.quoteFeed[i] === test){
         feed.quoteFeed.splice(i, 1);
+        feed.quoteFeed.sort(sortedByHighestRating);
         feed.save(feed.quoteFeed);
         feed.render(feed.quoteFeed);
 

@@ -3,35 +3,45 @@
 <head>
   <meta charset="utf-8">
   <title>Untitled</title>
+  <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<h2> Quote Form</h2>
-	<form>
-		<div class="form-quote-container">
+<div class="container">
+	<h1 class="page-header">Inspirational Quotes</h1>
+</div>
+<div class="show-form container"><i class="fa fa-arrow-circle-o-down fa-5x"></i></div>
+<div class="form-container container">
+	<h2>Inspirational Quotes</h2>
+	<form role="form">
+		<div class="form-quote-container form-group">
 			<label for="quote">Quote: </label>
-			<input class="clear" name="quote" type="text">
+			<input class="clear form-control" name="quote" type="text" placeholder="Enter a quote">
 		</div>
 
-		<div class="form-author-container">
+		<div class="form-author-container form-group">
 			<label for="author-name">Author Name: </label>
-			<input class="clear" name="author-name" type="text">
+			<input class="clear form-control" name="author-name" type="text" placeholder="Enter author's name">
 		</div>
 	
-		<div class="raty"></div>
+		<p><div class="raty"></div></p>
 
-		<input class="submit" type="submit">
+		<input class="submit btn btn-default" type="submit">
 	</form>
+</div>
 
 	<div class="quote-display-template">
 		<div class="display-quote"></div>
 		<div class="display-author-name"></div>
-		<div class="display-rating"></div>
-		<button class="rm-btn">Remove</button>
+		<p><div class="display-rating"></div></p>
+		<button class="rm-btn btn btn-info">Remove <span class="glyphicon glyphicon-remove-circle"></span></button>
 	</div>
-<h2>Inspirational Quotes</h2>
+<div class="container">
+	<h2> Inspiration List </h2>
 	<div class="display-quote-container"></div>
+</div>
 	
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
