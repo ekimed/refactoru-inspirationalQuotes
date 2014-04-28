@@ -104,6 +104,17 @@ $(document).on('ready', function() {
     }
   });
 
+  $('.show-form').on('click', 'i', function(){
+
+    $('.form-container').slideToggle();
+  });
+
+  $('i').hover(function(){
+    $(this).css("color","green")
+  }, function(){
+    $(this).css("color", "black")
+  });
+
 
 });
 
